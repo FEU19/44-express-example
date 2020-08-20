@@ -2,6 +2,9 @@
 window.addEventListener('load', () => {
     let buttonGetContacts = document.querySelector('#buttonGetContacts');
     let contactList = document.querySelector('#contactList')
+    let inputName = document.querySelector('#inputName')
+    let inputEmail = document.querySelector('#inputEmail')
+    let buttonAdd = document.querySelector('#buttonAdd')
 
     buttonGetContacts.addEventListener('click', async () => {
         // send request to backend - to get all contacts
@@ -17,4 +20,20 @@ window.addEventListener('load', () => {
             contactList.appendChild(li)
         })
     })
+
+    buttonAdd.addEventListener('click', async () => {
+        let name = inputName.value;
+        let email = inputEmail.value;
+        let data = { name, email };
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const text = await response.text();
+        console.log(text);
+    })
+
 })
