@@ -18,7 +18,15 @@ app.get('/api/contacts', (req, res) => {
     res.send(data);
 })
 
-// TODO: lägg till flera routes, för GET/POST/PUT/DELETE
+// Ett RESTful API har GET+POST+PUT+DELETE
+// GET /api/contact  ?id=x
+app.get('/api/contact', (req, res) => {
+    let id = Number(req.query.id)
+    res.send( data[id] )
+})
+// POST /api/contact  (send contact in request body)
+// PUT /api/contact  (send changes in request body)
+// DELETE /api/contact  ?id=x
 
 
 // (error handling)
